@@ -1,5 +1,6 @@
 "use client"
 
+import Div from "../components/Div"
 import Table from "../components/Table"
 
 export default function Home() {
@@ -27,6 +28,8 @@ export default function Home() {
         </dialog>
 
         <Table></Table>
+        <Div></Div>
+
       </div>
     </main>
   )

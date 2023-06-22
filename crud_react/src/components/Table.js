@@ -1,5 +1,7 @@
+import { useSetRecoilState } from "recoil"
 // Table Component
-import React from "react"
+import { useState } from "react"
+import { userState } from "../Context/UserContext"
 
 const data = [
   {
@@ -36,9 +38,12 @@ const data = [
 
 export default function Table() {
   // using pagination
+  const setUser = useSetRecoilState(userState)
+  const [page, setPage] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
+
   return (
     <div>
-
       <div className="form-control">
         <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto " />
       </div>
@@ -57,7 +62,14 @@ export default function Table() {
             {data.map(item => (
               <tr key={item.id} className="hover">
                 <td className="flex items-center justify-center">
-                  <button className="btn">BTN</button>
+                  <button
+                    className="btn"
+                    onClick={() => {
+                      setUser({ ...item, updateState: true })
+                    }}
+                  >
+                    BTN
+                  </button>
                 </td>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
@@ -68,31 +80,32 @@ export default function Table() {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-around">
+      <div className="mt-4 flex justify-around">
+        {/* Pagination */}
         <div className="join">
           <button className="join-item btn">«</button>
-          <div className="join-item btn">1</div>
+          <div className="join-item btn btn-active">1</div>
           <div className="join-item btn">2</div>
-          <div className="join-item btn btn-disabled">...</div>
+          <div className="join-item btn">3</div>
           <div className="join-item btn">4</div>
-          <div className="join-item btn">5</div>
           <button className="join-item btn">»</button>
         </div>
-        <div className="dropdown">
-          <label tabIndex={0} className="btn">
-            Page Size
+
+        {/* Page Size */}
+        <div className="form-control w-full max-w-xs flex flex-row">
+          <label className="label">
+            <span className="label-text-alt">Page Size</span>
           </label>
-          <ul
-            tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+          <select
+            className="select select-bordered"
+            value={pageSize}
+            onChange={e => setPageSize(e.target.value)}
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 1</a>
-            </li>
-          </ul>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
         </div>
       </div>
     </div>
