@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const API_URL = {
-  service: "http://localhost:5000/api",
+  service: "http://localhost:5001/api",
 }
 
 export const axiosInstance = axios.create({
