@@ -90,8 +90,7 @@ export default function Table() {
   }
 
   return (
-    <div>
-      <div></div>
+    <div className="flex flex-col">
       <div className="flex max-w-sm">
         <div className="stat border border-solid">
           <div className="stat-title">Total User</div>
@@ -160,9 +159,26 @@ export default function Table() {
           </tbody>
         </table>
       </div>
-      <div className="mt-4 flex justify-around">
+      <div className="flex flex-col">
+        {/* Page Size */}
+        <div className="form-control w-full max-w-xs flex flex-row">
+          <label className="label">
+            <span className="label-text-alt">Page Size</span>
+          </label>
+          <select
+            className="select select-bordered"
+            value={pageSize}
+            onChange={e => setPageSize(e.target.value)}
+          >
+            <option>3</option>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </div>
         {/* Pagination */}
-        <div className="join">
+        <div className="join flex items-center justify-center">
           <button className="join-item btn" onClick={() => setPage(1)}>
             FIRST Page
           </button>
@@ -187,24 +203,6 @@ export default function Table() {
           <button className="join-item btn" onClick={() => setPage(allPage)}>
             LAST Page
           </button>
-        </div>
-
-        {/* Page Size */}
-        <div className="form-control w-full max-w-xs flex flex-row">
-          <label className="label">
-            <span className="label-text-alt">Page Size</span>
-          </label>
-          <select
-            className="select select-bordered"
-            value={pageSize}
-            onChange={e => setPageSize(e.target.value)}
-          >
-            <option>3</option>
-            <option>10</option>
-            <option>20</option>
-            <option>50</option>
-            <option>100</option>
-          </select>
         </div>
       </div>
     </div>
