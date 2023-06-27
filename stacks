@@ -1,0 +1,12 @@
+Backend:
+  ASP.Net Core 7
+  EF + Postgresql
+DB:
+  POSTGRESQL
+
+WEB:
+  Next.js
+  Tailwind UI
+  DaisyUI
+
+Dockerized
